@@ -1,0 +1,43 @@
+.form-control {
+    box-shadow: 1px 1px 10px #a5a4a4;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
+  }
+  
+  .input-control label {
+    display: block;
+    font-weight: bold;
+    margin: 3px 0;
+    font-family: sans-serif;
+  }
+  
+  .input-control input {
+    height: 20px;
+    width: 70%;
+    margin: 3px 0;
+    padding: 2px;
+    font-size: medium;
+  }
+  
+  .input-control.invalid label {
+    color: red;
+  }
+  .input-control.invalid input {
+    border-color: red;
+    background-color: #ee8282;
+  }
+  
+  .form-control button {
+    cursor: pointer;
+    padding: 8px;
+    margin: 5px 0;
+    color: white;
+    background-color: #7e065a;
+    /* background-image: linear-gradient(90deg, #6b395c, #ff00af); */
+    border: 0;
+  }
+  
+  .form-control.invalid button {
+    background-color: #ee8282;
+  }

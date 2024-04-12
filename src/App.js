@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TasksList from './components/TaskList';
+import TasksInput from './components/TaskInput';
+import "./App.css"
 
 function App() {
+  const [tasks, setTasks] = useState([
+    { text: 'Do all exercises!', id: Math.random() },
+    { text: 'Finish the course!', id: Math.random() },
+    { text: 'Goto the library', id: Math.random() },
+  ]);
+
+  function addTaskHandler(newTask) {
+    setTasks((prevTasks) => {
+      return [newTask, ...prevTasks];
+    });
+  }
+
+  function deleteItemHandler(itemId) {
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.filter((task) => task.id !== itemId);
+      return updatedTasks;
+    });
+  }
+
+  let taskList = (
+    <p style={{ textAlign: 'center', fontWeight: 'bold' }}>
+      No tasks found. Add some tasks...
+    </p>
+  );
+
+  if (tasks.length > 0) {
+    taskList = <TasksList items={tasks} onDeleteItem={deleteItemHandler} />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <TasksInput onAddTask={addTaskHandler} />
+      <section id="task">
+        {/* {tasks.length === 0 ? (
+          <p style={{ textAlign: 'center' }}>
+            No tasks found. Add some tasks...
+          </p>
+        ) : (
+          <TasksList items={tasks} onDeleteItem={deleteItemHandler} />
+        )} */}
+        {/* {tasks.length === 0 && (
+          <p style={{ textAlign: 'center', fontWeight: 'bold' }}>
+            No tasks found. Add some tasks...
+          </p>
+        )}
+        <TasksList items={tasks} onDeleteItem={deleteItemHandler} /> */}
+        {taskList}
+      </section>
     </div>
   );
 }
 
 export default App;
+
